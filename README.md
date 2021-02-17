@@ -8,7 +8,7 @@ abra o terminal e execute o comando "npm install"
 
 ## Rodando a aplicação no modo desenvolvedor
 
-Execute o comando `ng serve` . Navegue até `http://localhost:4200/`.
+Execute o comando `ng serve --aot` . Navegue até `http://localhost:4200/`.
 
 ## Criando build da aplicação
 
