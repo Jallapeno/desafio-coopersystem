@@ -1,0 +1,92 @@
+<div class="row">
+    <h2>DADOS DO INVESTIMENTO</h2>
+</div>
+
+<div>
+    <mat-card class="row">
+        <mat-grid-list cols="3" rowHeight="100px">
+            
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-grid-tile-header >
+                    Nome
+                </mat-grid-tile-header>
+                <mat-grid-tile-footer class="topCard">
+                    {{investimentos.nome}}
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-grid-tile-header >
+                    Saldo total disponível
+                </mat-grid-tile-header>
+                <mat-grid-tile-footer class="topCard">
+                    R$ {{ investimentos.saldoTotalDisponivel | number : '1.2-2'}}
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+            
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-grid-tile-header >
+                    Valor total a resgatar
+                </mat-grid-tile-header>
+                <mat-grid-tile-footer class="topCard" *ngIf="resgateTotal >= 0">
+                    R$ {{ resgateTotal | number : '1.2-2'}}
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </mat-card>
+</div>
+
+<div class="row">
+    <h2>RESGATE DO SEU JEITO</h2>
+</div>
+
+<mat-card class="row">
+    <form [formGroup]="resgateForm" >
+        <table formArrayName="acoes">
+            <thead>
+                <tr>
+                  <th>AÇÃO</th>
+                  <th>SALDO ACUMULADO</th>
+                  <th>VALOR A RESGATAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let acao of resgateForm.get('acoes')['controls']; let i = index" 
+                [formGroupName]="i">
+                    <th>
+                        {{acao.value['nome']}}
+                    </th>
+                    <th>
+                        R$ {{ acao.value['saldo'] | number : '1.2-2'}}
+                    </th>
+                    <th>
+                        <mat-form-field style="width: 50%;">
+                            <input matInput 
+                            formControlName="valor"
+                            type="text" 
+                            currencyMask  
+                            placeholder="R$"
+                            [allowNegative]="false"/>
+                            <span style="color: red; font-size: 12px;" 
+                            *ngIf="acoes.value[i].valor && acoes.value[i].valor > acao.value['saldo']">
+                                O valor excede o limite total de resgate
+                            </span>
+                        </mat-form-field>
+                    </th>
+                    <mat-divider></mat-divider>
+                </tr>
+                <mat-divider></mat-divider>
+            </tbody>
+        </table>
+        
+    </form>
+    <div class="row" align="center">
+        <button [routerLink]="['/investimentos']" mat-flat-button color="warn">
+            Cancelar
+        </button>
+        <button mat-flat-button color="primary" (click)="submitForm(acoes)">
+            Confirmar resgate
+        </button>
+    </div>
+</mat-card>

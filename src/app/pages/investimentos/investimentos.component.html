@@ -1,0 +1,27 @@
+<mat-progress-bar color="warn" *ngIf="load === true" mode="indeterminate"></mat-progress-bar>
+<table mat-table [dataSource]="investimentos" class="mat-elevation-z8">
+    
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let investimentos"> {{investimentos.nome}} </td>
+    </ng-container>
+    
+    
+    <ng-container matColumnDef="objetivo">
+        <th mat-header-cell *matHeaderCellDef> Objetivo </th>
+        <td mat-cell *matCellDef="let investimentos"> {{investimentos.objetivo}} </td>
+    </ng-container>
+    
+    
+    <ng-container matColumnDef="saldoTotalDisponivel">
+        <th mat-header-cell *matHeaderCellDef> Saldo Total Disponível </th>
+        <td mat-cell *matCellDef="let investimentos"> R$ {{investimentos.saldoTotalDisponivel | number : '1.2-2'}} </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr 
+    (click)="resgate(row)" 
+    mat-row 
+    *matRowDef="let row; columns: displayedColumns;" 
+    class="example-element-row"></tr>
+</table>
