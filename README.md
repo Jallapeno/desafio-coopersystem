@@ -1,27 +1,28 @@
 # DesafioCoopersystem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+Foi utilizado o Angular na versão 10.0.1.
 
-## Development server
+## Instalação
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+abra o terminal e execute o comando "npm install"
 
-## Code scaffolding
+## Rodando a aplicação no modo desenvolvedor
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Execute o comando `ng serve` . Navegue até `http://localhost:4200/`.
 
-## Build
+## Criando build da aplicação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Execute o comando `ng build`. Os artefatos da build serão armazenados em `dist/` na raiz do projeto. Execute `--prod` para fazer uma build de produção.
 
-## Running unit tests
+## Executanto testes unitários
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Execute o comando `ng test` para testar via  <a href="https://karma-runner.github.io">Karma</a>.
 
-## Running end-to-end tests
+## Executanto testes de ponta a ponta
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Execute o comando `ng e2e` para testar via <a href="http://www.protractortest.org/">Protractor</a>.
 
-## Further help
+## Executanto testes de arquitetura com lint
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Execute o comando `ng lint` para verificar se a arquitetura está no padrão.
+
