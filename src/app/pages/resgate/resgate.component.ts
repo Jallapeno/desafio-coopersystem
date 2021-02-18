@@ -55,23 +55,23 @@ export class ResgateComponent implements OnInit {
     }, {
       validators: (abstractControll: AbstractControl) => {
         if (abstractControll.value.valor) {
+          const idErroInArrayErros = this.erro.find(x => x.id === abstractControll.value.id);
           if (abstractControll.value.valor as number > abstractControll.value.saldo) {
-            const erros = new Erros();
-            erros.id = abstractControll.value.id;
-            erros.nome = abstractControll.value.nome;
-            erros.saldo = abstractControll.value.saldo;
-            erros.valor = abstractControll.value.valor;
-            this.erro.push(erros);
-            return {error: 'required'};
-          } else if ((this.erro.find(x => x.id === abstractControll.value.id))
-            &&
-            (abstractControll.value.valor as number < abstractControll.value.saldo)){
-              for (const err of this.erro) {
-                if (err.id === abstractControll.value.id) {
-                  this.erro.pop();
-                }
+              if (!idErroInArrayErros){
+                const erros = new Erros();
+                erros.id = abstractControll.value.id;
+                erros.nome = abstractControll.value.nome;
+                erros.saldo = abstractControll.value.saldo;
+                erros.valor = abstractControll.value.valor;
+                this.erro.push(erros);
               }
-            }
+              return {error: 'required'};
+          } else {
+              const index: number = this.erro.indexOf(idErroInArrayErros);
+              if (index !== -1) {
+                  this.erro.splice(index, 1);
+              }
+          }
         }
         return null;
       }
